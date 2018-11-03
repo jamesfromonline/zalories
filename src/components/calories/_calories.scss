@@ -1,0 +1,41 @@
+@import '../../styles/shared/_mixins.scss';
+@import '../../styles/shared/_variables.scss';
+
+:host {
+  flex: 1;
+}
+
+.calories {
+
+  &__container {
+    @include flex(column, center, center);
+    background: transparent;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 40px;
+
+    @media (max-width: 768px) {
+      padding: 0 10px;
+    }
+  }
+
+  &__text {
+    font-family: $font--main;
+    font-size: 3rem;
+    color: white;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      margin-left: 20px;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 3.2rem;
+      color: $yellow;
+    }
+  }
+}

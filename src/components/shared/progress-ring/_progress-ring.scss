@@ -1,0 +1,81 @@
+@import '../../../styles/shared/mixins';
+@import '../../../styles/shared/variables';
+
+.progress-ring {
+
+  &__container {
+    @include flex(row, center, center);
+    min-height: 203px;
+    max-height: 300px;
+
+    @media (max-width: 768px) {
+      min-height: 173px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__circle-container {
+
+    @media (max-width: 768px) {
+      width: 100vw;
+      @include flex(row, flex-end, center)
+    }
+  }
+
+  &__circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    stroke: transparent;
+    z-index: 10;
+
+    @media (max-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
+
+    text {
+      // fill: #00a1f0 !important;
+    }
+  }
+
+  &__text {
+    font-family: $font--main;
+    font-size: 3rem;
+    color: white;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      margin-left: 20px;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 3.2rem;
+      color: $yellow;
+    }
+  }
+}
+
+.CircularProgressbar {
+  width: 60% !important;
+  margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    width: 50% !important;
+    margin-bottom: 10px;
+  }
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: transparent !important;
+  z-index: 10;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  // stroke: #00a1f0 !important;
+  z-index: 10;
+}

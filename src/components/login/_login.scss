@@ -1,0 +1,57 @@
+@import '../../styles/shared/_mixins.scss';
+@import '../../styles/shared/_variables.scss';
+
+.login {
+
+  &__container {
+    @include flex(column, center, center);
+    position: absolute;
+    top: 83px;
+    left: 0;
+    height: calc(100vh - 83px);
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 0 20px;
+    z-index: 30;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  &__links {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    h2 {
+      width: 100%;
+      margin-top: 0;
+      font-family: $font--main;
+      font-size: 1.2rem;
+      letter-spacing: -2px;
+      color: white;
+    }
+  }
+
+  &__link {
+    font-size: 2.5rem;
+    color: white;
+    font-family: $font--main;
+    text-align: center;
+    transform: scale(1);
+    transform-origin: center;
+    cursor: pointer;
+    transition: $transition--standard;
+    margin: 20px;
+
+    &:focus,
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

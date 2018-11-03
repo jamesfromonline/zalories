@@ -1,0 +1,146 @@
+@import './components/calories/calories';
+@import './components/modify/modify';
+@import './components/login/login';
+@import './components/logout/logout';
+@import './components/loader/loader';
+@import './components/footer/footer';
+@import './components/goal-bar/goal-bar';
+@import './components/shared/progress-ring/progress-ring';
+@import './components/shared/progress-bar/progress-bar';
+@import './styles/shared/mixins';
+@import './styles/shared/variables';
+@import './styles/shared/animations';
+
+@import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Work+Sans:500');
+
+.app {
+
+  &__wrapper {
+    @include flex(column, center, center);
+    @include linear-grad($grey--background, lighten($grey--background, 5%), 109deg);
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 1800px;
+    text-align: center;
+  }
+
+  &__header {
+    @include flex(row, center, center);
+    font-family: $font--main;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px 5px 20px;
+    z-index: 2000;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
+
+    &--login {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    a {
+      @include flex(row, center, center);
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+  }
+
+  &__date {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 0 0 0 40px;
+    font-family: $font--main;
+    font-size: 1.4rem;
+    color: white;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 0;
+      text-align: left;
+    }
+  }
+
+  &__title {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__calories-wrapper {
+    flex: 1;
+    height: 100%;
+  }
+
+  &__buttons-container {
+    @include flex(row, center, center);
+    width: 100%;
+
+    a {
+      width: 50%;
+      padding: 20px 0;
+      @include flex(row, center, center);
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+      // background: lighten($grey--background, 5%);
+
+      &:focus,
+      &:hover {
+        background: lighten($grey--background, 7%);
+      }
+
+      &:first-child {
+        border-right: 1px solid lighten($grey--background, 20%);
+      }
+    }
+  }
+}
+
+h1 {
+  font-family: 'Work Sans';
+  font-size: 3rem;
+  font-weight: 400;
+  color: white;
+  letter-spacing: -2px;
+}
+
+.hidden {
+  display: none;
+}
+
+.animate--fade-in {
+  animation: fade-in 0.2s ease-in;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

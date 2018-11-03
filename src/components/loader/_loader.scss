@@ -1,0 +1,46 @@
+@import '../../styles/shared/_variables.scss';
+@import '../../styles/shared/_mixins.scss';
+
+:host {
+  flex: 1;
+}
+
+.loader {
+
+  &__container {
+    @include flex(column, center, center);
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex: 1;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: $grey--background;
+    color: white;
+  }
+}
+
+
+.ring {
+  width: 150px;
+  height: 150px;
+  box-sizing: border-box;
+  border: solid 4px transparent;
+  border-radius: 100%;
+  background-image: linear-gradient($grey--background, $grey--background),
+                    radial-gradient(circle at top left, #db1c87, #8ffdfc);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: rotate 1s linear infinite;
+}
+
+.ring-header {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}

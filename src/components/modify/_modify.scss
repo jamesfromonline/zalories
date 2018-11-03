@@ -1,0 +1,101 @@
+@import '../../styles/shared/_mixins.scss';
+@import '../../styles/shared/_variables.scss';
+
+.modify {
+
+  &--open {
+    top: 0;
+    opacity: 1 !important;
+    z-index: 300;
+  }
+
+  &--closed {
+    top: 100%;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  &__container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
+    transition: all 0.5s ease;
+    z-index: 30;
+
+    form {
+      @include flex(column, center, center);
+      height: calc(100vh - 85px);
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid white;
+      margin: 20px 0;
+      width: 50%;
+      box-sizing: border-box;
+      padding: 20px;
+      font-family: $font--main;
+      color: white;
+      font-size: 2rem;
+      outline: 0;
+      transition: $transition--standard;
+
+      @media (max-width: 768px) {
+        width: 90%;
+      }
+
+      &::placeholder {
+        color: white;
+      }
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    button {
+      width: 50%;
+      background: none;
+      color: white;
+      font-family: $font--main;
+      font-size: 1rem;
+      border: 2px solid lighten($blue, 13%);
+      border-radius: 5px;
+      box-sizing: border-box;
+      padding: 20px 0;
+      cursor: pointer;
+      transition: all .2s ease;
+
+      &:focus,
+      &:hover {
+        border-color: lighten($blue, 17%);
+      }
+
+      &:disabled {
+        border: 2px solid lighten($grey--background, 15%);
+        background: none;
+        color: lighten($grey--background, 15%);
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: 50px;
+        width: 90%;
+      }
+    }
+
+    p {
+      font-family: $font--main;
+      font-size: 1rem;
+      color: white;
+      padding: 0;
+      padding-top: 20px;
+      margin: 0;
+    }
+  }
+}

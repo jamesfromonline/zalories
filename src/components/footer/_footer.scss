@@ -1,0 +1,21 @@
+@import '../../styles/shared/_variables.scss';
+@import '../../styles/shared/_mixins.scss';
+
+.footer {
+
+  &__container {
+    @include flex(row, center, center);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+
+    p {
+      font-family: $font--main;
+      color: white;
+      font-size: 0.7rem;
+    }
+  }
+}

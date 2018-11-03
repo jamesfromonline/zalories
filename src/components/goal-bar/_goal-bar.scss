@@ -1,0 +1,29 @@
+@import '../../styles/shared/_mixins.scss';
+@import '../../styles/shared/_variables.scss';
+
+.goal-bar {
+
+  &__container {
+    position: relative;
+    width: 100%;
+    // background: lighten($grey--background, 20%);
+    cursor: pointer;
+
+    p {
+      position: relative;
+      font-family: $font--main;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      z-index: 20;
+
+      @media (max-width: 768px) {
+        text-align: right;
+        font-size: 0.8rem;
+        padding-right: 20px;
+      }
+    }
+  }
+}
