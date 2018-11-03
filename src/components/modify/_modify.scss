@@ -77,9 +77,9 @@
       }
 
       &:disabled {
-        border: 2px solid lighten($grey--background, 15%);
+        border: 2px solid lighten($blue, 8%);
         background: none;
-        color: lighten($grey--background, 15%);
+        color: lighten($blue, 15%);
         cursor: not-allowed;
       }
 
