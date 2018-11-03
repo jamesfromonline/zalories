@@ -31,6 +31,7 @@ class App extends Component {
   componentDidMount () {
     this.setState({ auth_status_checked: false })
     this.handlePreviousLogin()
+    document.addEventListener('keydown', this.detectKeyDown)
   }
 
   handlePreviousLogin() {
@@ -204,6 +205,31 @@ class App extends Component {
     this.setState({ daily_cals_goal: amount })
     firebase.database().ref(`/users/${this.state.uid}`).child('daily_cals_goal').set(amount)
     this.toggleChangeGoal()
+  }
+
+  detectKeyDown = e => {
+    console.log(e.key)
+    switch( e.key ) {
+      case '=':
+        this.toggleAddCalories()
+        break
+      case '-':
+        this.toggleSubtractCalories()
+        break
+      case 'Escape':
+        this.setState({
+          toggle_add: false,
+          toggle_subtract: false,
+          toggle_logout: false,
+          toggle_change_goal: false
+        })
+        break
+      case 'g':
+        this.toggleChangeGoal()
+        break
+      default:
+        break
+    }
   }
 
   render() {
