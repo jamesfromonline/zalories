@@ -208,7 +208,6 @@ class App extends Component {
   }
 
   detectKeyDown = e => {
-    console.log(e.key)
     switch( e.key ) {
       case '=':
         this.toggleAddCalories()
