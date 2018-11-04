@@ -69,6 +69,7 @@ class Modify extends Component {
         <div className={add || sub ? 'modify__container modify--open' : 'modify__container modify--closed'}>
           <form onSubmit={this.changeCaloricValue}>
             <input type='number'
+                   min='0'
                    placeholder='Calories'
                    className='modify__input'
                    onChange={this.handleInputValidation}
@@ -93,6 +94,7 @@ class Modify extends Component {
         <div className='modify__container'>
           <form onSubmit={this.changeGoal}>
             <input type='number'
+                   min='0'
                    placeholder='Daily Calories Goal'
                    className='modify__input'
                    onChange={this.handleInputValidation}

@@ -64,7 +64,6 @@ class App extends Component {
         const data = snapshot.val()
         console.log(data)
         if (data) {
-          console.log('first shit ran')
           if (!data.hasOwnProperty('data')) data.data = []
           this.setState({
             avatar_url: data.avatar_url,
@@ -74,13 +73,12 @@ class App extends Component {
             username: data.username
           })
         } else {
-          console.log('second shit ran')
           if (this.state.auth) {
             firebase.database()
                     .ref(`/users/${this.state.uid}/`)
                     .set(JSON.parse(JSON.stringify(this.state)))
           } else {
-            console.log('no user data')
+            console.log('No user data.')
           }
         }
       }
@@ -91,24 +89,6 @@ class App extends Component {
   }
 
   authStatusChecked = () => this.setState({ auth_status_checked: true })
-
-  setUserData = () => {
-    firebase.database().ref('/users/' + this.state.uid).once('value').then(async snapshot => {
-      try {
-        const data = await snapshot.val()
-        if (data) {
-          // do stuff
-        } else {
-          if (this.state.auth) {
-            firebase.database().ref(`/users/${this.state.uid}/`).set(JSON.parse(JSON.stringify(this.state)))
-          }
-        }
-      }
-      catch(e) {
-        console.error(e)
-      }
-    })
-  }
 
   handleLogIn = source => {
       auth.signInWithPopup(source)
@@ -185,6 +165,7 @@ class App extends Component {
             .ref(`/users/${this.state.uid}`)
             .child('data')
             .set(user_data)
+    this.getExistingUserData()
   }
 
   subtractCalories = amount => {
@@ -198,21 +179,26 @@ class App extends Component {
     }
     user_data.push(data)
     this.setState({ data: user_data })
-    firebase.database().ref(`/users/${this.state.uid}`).child('data').set(user_data)
+    firebase.database()
+            .ref(`/users/${this.state.uid}`)
+            .child('data')
+            .set(user_data)
+    this.getExistingUserData()
   }
 
   changeGoal = amount => {
     this.setState({ daily_cals_goal: amount })
     firebase.database().ref(`/users/${this.state.uid}`).child('daily_cals_goal').set(amount)
+    this.getExistingUserData()
     this.toggleChangeGoal()
   }
 
   detectKeyDown = e => {
     switch( e.key ) {
-      case '=':
+      case ']':
         this.toggleAddCalories()
         break
-      case '-':
+      case '[':
         this.toggleSubtractCalories()
         break
       case 'Escape':
