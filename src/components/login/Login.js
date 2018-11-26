@@ -7,7 +7,7 @@ const Login = props => {
   return (
     <div className='login__container'>
       <div className='login__links'>
-        <h2>log in</h2>
+        {/* <h2>log in</h2> */}
         <a className='login__link'
           onClick={() => login(google)}
           title='Sign in with Google'>

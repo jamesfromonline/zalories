@@ -21,7 +21,7 @@
     @include flex(column, center, center);
     @include linear-grad($grey--background, lighten($grey--background, 5%), 109deg);
     position: relative;
-    min-height: 100vh;
+    height: 100%;
     width: 100vw;
     max-width: 1800px;
     text-align: center;
@@ -70,6 +70,10 @@
       height: 40px;
       border-radius: 50%;
       border: 2px solid white;
+
+      @media (max-width: 768px) {
+        border: none;
+      }
     }
   }
 

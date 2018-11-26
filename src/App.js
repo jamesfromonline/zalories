@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.scss'
 import moment from 'moment'
 import firebase, { auth } from './utils/firebase'
+import Div100vh from 'react-div-100vh'
 import Calories from './components/calories/Calories'
 import Login from './components/login/Login'
 import LogOut from './components/logout/LogOut'
@@ -32,6 +33,12 @@ class App extends Component {
     this.setState({ auth_status_checked: false })
     this.handlePreviousLogin()
     document.addEventListener('keydown', this.detectKeyDown)
+  }
+
+  componentDidUpdate() {
+    const wrapper = this.refs.wrapper
+    let vh = window.innerHeight * 0.01
+    console.log(vh)
   }
 
   handlePreviousLogin() {
@@ -115,7 +122,6 @@ class App extends Component {
             })
           }
 
-          // this.getExistingUserData()
         }
         catch(e) {
           console.error('Error logging in: ', e)
@@ -223,7 +229,8 @@ class App extends Component {
     const toggle_subtract = this.state.toggle_subtract
     const toggle_change = this.state.toggle_change_goal
     return (
-      <div className="app__wrapper">
+      <Div100vh>
+      <div className="app__wrapper" ref='wrapper'>
 
         {
           this.state.auth
@@ -304,11 +311,8 @@ class App extends Component {
                 add_cals={this.addCalories}
                 subtract_cals={this.subtractCalories}
                 closeModal={this.closeModal} />
-
-
-
-
       </div>
+    </Div100vh>
     )
   }
 }
