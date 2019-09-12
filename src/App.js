@@ -165,7 +165,6 @@ class App extends Component {
     }
     user_data.push(data)
     this.setState({data: user_data})
-    console.log(this.state.data)
     firebase.database()
             .ref(`/users/${this.state.uid}`)
             .child('data')
@@ -223,7 +222,7 @@ class App extends Component {
   }
 
   render() {
-    const current_date = moment().format('dddd, MMMM YYYY')
+    const current_date = moment().format('dddd, MMMM DD YYYY')
     const toggle_add = this.state.toggle_add
     const toggle_subtract = this.state.toggle_subtract
     const toggle_change = this.state.toggle_change_goal
