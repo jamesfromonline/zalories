@@ -38,7 +38,6 @@ class App extends Component {
   componentDidUpdate() {
     const wrapper = this.refs.wrapper
     let vh = window.innerHeight * 0.01
-    console.log(vh)
   }
 
   handlePreviousLogin() {
@@ -69,7 +68,7 @@ class App extends Component {
     firebase.database().ref('/users/' + this.state.uid).once('value').then(snapshot => {
       try {
         const data = snapshot.val()
-        console.log(data)
+        // console.log(data)
         if (data) {
           if (!data.hasOwnProperty('data')) data.data = []
           this.setState({
@@ -229,7 +228,7 @@ class App extends Component {
     const toggle_subtract = this.state.toggle_subtract
     const toggle_change = this.state.toggle_change_goal
     return (
-      <Div100vh>
+      <Div100vh className='wrapper'>
       <div className="app__wrapper" ref='wrapper'>
 
         {

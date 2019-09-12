@@ -15,16 +15,31 @@
 @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Work+Sans:500');
 
+#root {
+  display: flex;
+  justify-content: center;
+  background-color: $grey--background;
+  @include linear-grad($grey--background, lighten($grey--background, 5%), 109deg);
+}
+
+body {
+  margin: 0;
+}
+
+.wrapper {
+  width: 100%;
+}
+
 .app {
 
   &__wrapper {
     @include flex(column, center, center);
-    @include linear-grad($grey--background, lighten($grey--background, 5%), 109deg);
     position: relative;
     height: 100%;
     width: 100vw;
     max-width: 1800px;
     text-align: center;
+    margin: 0;
   }
 
   &__header {

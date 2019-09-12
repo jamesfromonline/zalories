@@ -13,11 +13,11 @@ const Login = props => {
           title='Sign in with Google'>
           <i className='fab fa-google' />
         </a>
-        <a className='login__link'
+        {/* <a className='login__link'
           onClick={() => login(facebook)}
           title='Sign in with Facebook'>
           <i className='fab fa-facebook' />
-        </a>
+        </a> */}
         <a className='login__link'
           onClick={() => login(twitter)}
           title='Sign in with Twitter'>
