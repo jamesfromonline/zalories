@@ -1,29 +1,38 @@
 import React from 'react'
 import Footer from '../footer/Footer'
+import { useStateValue } from '../../state'
+import { auth } from '../../utils/firebase'
 
 const LogOut = props => {
+  const [{ user, isModalActive }, dispatch] = useStateValue()
 
-  //handleLogOut = () => {
-    //     auth.signOut()
-    //     .then(() => {
-    //       this.setState({
-    //         auth: false,
-    //         user: {},
-    //         toggle_logout: false
-    //       })
-    //       this.closeModal()
-    //     })
-    //   }
+  const toggleModal = () => dispatch({ type: 'toggleModal', payload: false })
+
+  const handleLogOut = () => {
+    auth.signOut()
+    .then(() => {
+      dispatch({
+        type: 'user',
+        payload: {
+          ...user,
+          isAuthenticated: false
+        }
+      })
+      toggleModal()
+    })
+  }
+
+  const showLogout = isModalActive ? 'logout__container' : 'hidden'
   return (
-    <div className='logout__container'>
+    <div className={showLogout}>
       <div className='logout__top-bar'>
-        <button onClick={props.toggleLogOut}>
+        <button onClick={toggleModal}>
           <i className='fa fa-backspace' />
         </button>
       </div>
       <div className='login__links'>
         <button className='logout__button'
-          onClick={() => props.handleLogOut()}
+          onClick={handleLogOut}
           title='Sign in with Google'>
           Log Out
         </button>
