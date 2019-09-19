@@ -26,7 +26,10 @@ const Login = props => {
             payload: false
           })
         } else {
-          console.log("not logged in")
+          dispatch({
+            type: "toggleLoader",
+            payload: false
+          })
         }
       } catch (e) {
         console.error("Error fetching previous auth: ", e)
@@ -38,7 +41,6 @@ const Login = props => {
     auth.signInWithPopup(source).then(async result => {
       try {
         const account = await result.additionalUserInfo.profile
-        console.log("logged in: ", account)
         if (source === "twitter") {
           dispatch({
             type: "user",
@@ -60,7 +62,6 @@ const Login = props => {
             }
           })
         }
-
         dispatch({
           type: "toggleLoader",
           payload: true
