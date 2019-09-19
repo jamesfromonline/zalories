@@ -10,6 +10,7 @@ import Loader from './components/loader/Loader'
 import Modify from './components/modify/Modify'
 import GoalBar from './components/goal-bar/GoalBar'
 
+// TODO: Refactor this to use hooks, context, useReducer
 class App extends Component {
   state={
     auth: false,
