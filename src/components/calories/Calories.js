@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
+import firebase from "../../utils/firebase"
 import ProgressRing from "../shared/progress-ring/ProgressRing"
 import Loader from "../loader/Loader"
 
@@ -36,16 +37,75 @@ import Loader from "../loader/Loader"
 // }
 
 const Calories = () => {
-  const [{ user, isLoading }, dispatch] = useStateValue()
+  const [{ user }, dispatch] = useStateValue()
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "toggleLoader",
-  //     payload: false
-  //   })
-  // }, [dispatch])
+  const getExistingUserData = () => {
+    firebase.database().ref('/users/' + user.uid).once('value').then(snapshot => {
+      try {
+        const data = snapshot.val()
+        if (data) {
+          if (!data.hasOwnProperty('data')) data.data = []
+          dispatch({
+            type: "user",
+            payload: {
+              ...user,
+              avatar: data.avatar,
+              dailyGoal: data.dailyGoal,
+              data: data.data,
+            }
+          })
+          console.log('success: ', data)
+        } else {
+          if (user.isAuthenticated) {
+            firebase.database()
+                    .ref(`/users/${user.uid}/`)
+                    .set(JSON.parse(JSON.stringify(user)))
+          } else {
+            console.log('No user data.')
+          }
+        }
+      }
+      catch(e) {
+        console.error(e)
+      }
+    })
+  }
+
+  useEffect(() => {
+    getExistingUserData()
+  }, [user.isAuthenticated])
+
+
   if (user.isAuthenticated) {
-    return <div>Hey</div>
+      let total = 0
+      if (user.data) {
+        user.data.map(item => total += item.updatedCalories)
+        const progressBarWidth = (total / user.dailyGoal) * 100
+        let userData = Object.values(user.data)
+        if (userData.length > 0) {
+          let total = 0
+          userData.map(cals => total += cals.updatedCalories)
+          return (
+            <div className='calories__container animate--fade-in'>
+              <ProgressRing progress={progressBarWidth}
+                            goal={user.dailyGoal}/>
+              <p className='calories__text'>
+                I have consumed <span>{!total ? 0 : total}</span> calories today.
+              </p>
+            </div>
+          )
+        } else {
+          return (
+            <div className='calories__container'>
+              <p className='calories__text'>
+                I have consumed <span>0</span> calories today.
+              </p>
+            </div>
+          )
+        }
+      } else {
+        return <Loader />
+      }
   } else {
     return null
   }

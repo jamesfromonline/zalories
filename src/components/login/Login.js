@@ -4,7 +4,7 @@ import Footer from "../footer/Footer"
 import firebase, { twitter, google, facebook, auth } from "../../utils/firebase"
 
 const Login = props => {
-  const [{ user, isLoading }, dispatch] = useStateValue()
+  const [{ user }, dispatch] = useStateValue()
 
   const checkForPreviousLogin = () => {
     auth.onAuthStateChanged(async account => {
@@ -14,10 +14,11 @@ const Login = props => {
           dispatch({
             type: "user",
             payload: {
+              ...user,
               isAuthenticated: true,
               uid: userInfo.uid,
               username: userInfo.displayName,
-              avatar_url: userInfo.photoURL
+              avatar: userInfo.photoURL
             }
           })
 
@@ -45,20 +46,22 @@ const Login = props => {
           dispatch({
             type: "user",
             payload: {
+              ...user,
               isAuthenticated: true,
               uid: account.uid,
               username: account.name,
-              avatar_url: account.profile_image_url_https
+              avatar: account.profile_image_url_https
             }
           })
         } else {
           dispatch({
             type: "user",
             payload: {
+              ...user,
               isAuthenticated: true,
               uid: account.id,
               username: account.name,
-              avatar_url: account.profile_image_url_https
+              avatar: account.profile_image_url_https
             }
           })
         }

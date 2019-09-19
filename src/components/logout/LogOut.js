@@ -2,6 +2,18 @@ import React from 'react'
 import Footer from '../footer/Footer'
 
 const LogOut = props => {
+
+  //handleLogOut = () => {
+    //     auth.signOut()
+    //     .then(() => {
+    //       this.setState({
+    //         auth: false,
+    //         user: {},
+    //         toggle_logout: false
+    //       })
+    //       this.closeModal()
+    //     })
+    //   }
   return (
     <div className='logout__container'>
       <div className='logout__top-bar'>

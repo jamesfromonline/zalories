@@ -4,7 +4,7 @@ import "./App.scss"
 import moment from "moment"
 import firebase, { auth } from "./utils/firebase"
 import Div100vh from "react-div-100vh"
-import Calories from "./components/calories/Calories"
+import Home from './components/home'
 import Login from "./components/login/Login"
 import LogOut from "./components/logout/LogOut"
 import Loader from "./components/loader/Loader"
@@ -17,17 +17,16 @@ const App = () => {
       isAuthenticated: false,
       uid: null,
       username: null,
-      avatar: null
+      avatar: null,
+      dailyGoal: 0,
+      totalCalories: 0,
+      data: []
     },
-    data: [[]],
     toggle_add: false,
     isLoading: false,
     toggle_subtract: false,
     toggle_change_goal: false,
-    total_cals: 0,
-    daily_cals_goal: 0,
     date: null,
-    auth_status_checked: false,
     toggle_logout: false
   }
 
@@ -73,7 +72,7 @@ const App = () => {
         <main className="app__wrapper">
           <Loader />
           <Login />
-          <Calories />
+          <Home />
         </main>
       </Div100vh>
     </StateProvider>
@@ -100,8 +99,6 @@ const App = () => {
 //   }
 
 //   componentDidMount () {
-//     this.setState({ auth_status_checked: false })
-//     this.handlePreviousLogin()
 //     document.addEventListener('keydown', this.detectKeyDown)
 //   }
 
@@ -110,29 +107,7 @@ const App = () => {
 //     let vh = window.innerHeight * 0.01
 //   }
 
-//   handlePreviousLogin() {
-//     auth.onAuthStateChanged(async user => {
-//       try {
-//         if (user) {
-//           const userInfo = await user
-//           this.setState({
-//             auth: true,
-//             uid: userInfo.uid,
-//             username: userInfo.displayName,
-//             avatar_url: userInfo.photoURL
-//           })
-//           this.getExistingUserData()
-//           this.authStatusChecked()
-//         } else {
-//           this.setState({ auth: false })
-//           this.authStatusChecked()
-//         }
-//       }
-//       catch(e) {
-//         console.error('Error fetching previous auth: ', e)
-//       }
-//     })
-//   }
+
 
 //   getExistingUserData = () => {
 //     firebase.database().ref('/users/' + this.state.uid).once('value').then(snapshot => {
