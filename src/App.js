@@ -1,26 +1,27 @@
-import React, { Component } from 'react'
-import { StateProvider } from './state'
-import './App.scss'
-import moment from 'moment'
-import firebase, { auth } from './utils/firebase'
-import Div100vh from 'react-div-100vh'
-import Calories from './components/calories/Calories'
-import Login from './components/login/Login'
-import LogOut from './components/logout/LogOut'
-import Loader from './components/loader/Loader'
-import Modify from './components/modify/Modify'
-import GoalBar from './components/goal-bar/GoalBar'
+import React, { useEffect } from "react"
+import { StateProvider, useStateValue } from "./state"
+import "./App.scss"
+import moment from "moment"
+import firebase, { auth } from "./utils/firebase"
+import Div100vh from "react-div-100vh"
+import Calories from "./components/calories/Calories"
+import Login from "./components/login/Login"
+import LogOut from "./components/logout/LogOut"
+import Loader from "./components/loader/Loader"
+import Modify from "./components/modify/Modify"
+import GoalBar from "./components/goal-bar/GoalBar"
 
 const App = () => {
   const initialState = {
-    auth: false,
     user: {
+      isAuthenticated: false,
+      uid: null,
       username: null,
       avatar: null
     },
-    uid: null,
     data: [[]],
     toggle_add: false,
+    isLoading: false,
     toggle_subtract: false,
     toggle_change_goal: false,
     total_cals: 0,
@@ -30,43 +31,53 @@ const App = () => {
     toggle_logout: false
   }
 
+  // const [{ user }, dispatch] = useStateValue()
+
   const reducer = (state, action) => {
+    console.log(action)
     switch (action.type) {
-      case 'checkAuth':
+      case "user":
         return {
           ...state,
-          authenticated: action.payload
+          user: action.payload
         }
-      case 'setUser':
+      case "setUser":
         return {
           ...state,
-          authenticated: action.payload
+          user: action.payload
         }
-      case 'setUID':
+      case "setUID":
         return {
           ...state,
-          authenticated: action.payload
+          uid: action.payload
         }
-      case 'setData':
+      case "setData":
         return {
           ...state,
-          authenticated: action.payload
+          data: action.payload
+        }
+      case "toggleLoader":
+        return {
+          ...state,
+          isLoading: action.payload
         }
 
       default:
-        return state    }
+        return state
+    }
   }
 
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Div100vh className='wrapper'>
-        <div className="app__wrapper">
-          Stuff
-        </div>
+      <Div100vh className="wrapper">
+        <main className="app__wrapper">
+          <Loader />
+          <Login />
+          <Calories />
+        </main>
       </Div100vh>
     </StateProvider>
   )
-
 }
 
 // class App extends Component {
