@@ -30,8 +30,6 @@ const App = () => {
     toggle_logout: false
   }
 
-  // const [{ user }, dispatch] = useStateValue()
-
   const reducer = (state, action) => {
     console.log(action)
     switch (action.type) {
@@ -40,25 +38,15 @@ const App = () => {
           ...state,
           user: action.payload
         }
-      case "setUser":
-        return {
-          ...state,
-          user: action.payload
-        }
-      case "setUID":
-        return {
-          ...state,
-          uid: action.payload
-        }
-      case "setData":
-        return {
-          ...state,
-          data: action.payload
-        }
       case "toggleLoader":
         return {
           ...state,
           isLoading: action.payload
+        }
+      case "toggleModal":
+        return {
+          ...state,
+          isModalActive: action.payload
         }
 
       default:

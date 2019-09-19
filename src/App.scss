@@ -123,14 +123,16 @@ body {
     @include flex(row, center, center);
     width: 100%;
 
-    a {
+    a, button {
       width: 50%;
       padding: 20px 0;
       @include flex(row, center, center);
       cursor: pointer;
       font-size: 2rem;
       color: white;
-      // background: lighten($grey--background, 5%);
+      border: 0;
+      outline: none;
+      background: transparent;
 
       &:focus,
       &:hover {
