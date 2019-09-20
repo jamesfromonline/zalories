@@ -1,10 +1,10 @@
 import React from "react"
 import { StateProvider, initialState } from "./state"
-import { rootReducer } from './reducers'
+import { rootReducer } from "./reducers"
 import Loader from "./components/loader"
 import Login from "./components/login"
 import Div100vh from "react-div-100vh"
-import Home from './components/home'
+import Home from "./components/home"
 import "./App.scss"
 
 function App() {

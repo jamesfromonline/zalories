@@ -21,7 +21,7 @@
     height: 100%;
     @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
     transition: all 0.5s ease;
-    z-index: 30;
+    z-index: 9999;
 
     form {
       @include flex(column, center, center);
@@ -57,7 +57,17 @@
       margin: 0;
     }
 
-    button {
+    p {
+      font-family: $font--main;
+      font-size: 1rem;
+      color: white;
+      padding: 0;
+      padding-top: 20px;
+      margin: 0;
+    }
+  }
+
+  &__button-submit {
       width: 50%;
       background: none;
       color: white;
@@ -86,15 +96,5 @@
         margin-top: 50px;
         width: 90%;
       }
-    }
-
-    p {
-      font-family: $font--main;
-      font-size: 1rem;
-      color: white;
-      padding: 0;
-      padding-top: 20px;
-      margin: 0;
-    }
   }
 }
