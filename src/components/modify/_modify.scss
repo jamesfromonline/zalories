@@ -17,8 +17,7 @@
 
   &__container {
     position: absolute;
-    left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
     transition: all 0.5s ease;

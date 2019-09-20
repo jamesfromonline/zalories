@@ -6,8 +6,7 @@
   &__container {
     @include flex(column, center, center);
     position: absolute;
-    top: 83px;
-    left: 0;
+    top: 0;
     height: calc(100% - 83px);
     width: 100vw;
     box-sizing: border-box;
