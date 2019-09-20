@@ -40,21 +40,29 @@ const Calories = () => {
   const [{ user }, dispatch] = useStateValue()
 
   const getExistingUserData = () => {
+    dispatch({
+      type: 'toggleLoader',
+      payload: true
+    })
     firebase.database().ref('/users/' + user.uid).once('value').then(snapshot => {
       try {
         const data = snapshot.val()
         if (data) {
-          if (!data.hasOwnProperty('data')) data.data = []
           dispatch({
             type: "user",
             payload: {
               ...user,
               avatar: data.avatar,
               dailyGoal: data.dailyGoal,
-              data: data.data,
+              history: data.history,
+              totalCalories: data.totalCalories
             }
           })
           console.log('success: ', data)
+          dispatch({
+            type: 'toggleLoader',
+            payload: false
+          })
         } else {
           if (user.isAuthenticated) {
             firebase.database()
@@ -63,6 +71,10 @@ const Calories = () => {
           } else {
             console.log('No user data.')
           }
+          dispatch({
+            type: 'toggleLoader',
+            payload: false
+          })
         }
       }
       catch(e) {
@@ -75,40 +87,56 @@ const Calories = () => {
     getExistingUserData()
   }, [user.isAuthenticated])
 
-
   if (user.isAuthenticated) {
-      let total = 0
-      if (user.data) {
-        user.data.map(item => total += item.updatedCalories)
-        const progressBarWidth = (total / user.dailyGoal) * 100
-        let userData = Object.values(user.data)
-        if (userData.length > 0) {
-          let total = 0
-          userData.map(cals => total += cals.updatedCalories)
-          return (
-            <div className='calories__container animate--fade-in'>
+    const progressBarWidth = (user.totalCalories / user.dailyGoal) * 100
+    return (
+      <div className='calories__container animate--fade-in'>
               <ProgressRing progress={progressBarWidth}
                             goal={user.dailyGoal}/>
               <p className='calories__text'>
-                I have consumed <span>{!total ? 0 : total}</span> calories today.
+                I have consumed <span>{user.totalCalories}</span> calories today.
               </p>
             </div>
-          )
-        } else {
-          return (
-            <div className='calories__container'>
-              <p className='calories__text'>
-                I have consumed <span>0</span> calories today.
-              </p>
-            </div>
-          )
-        }
-      } else {
-        return <Loader />
-      }
+    )
   } else {
     return null
   }
+
+
+  // if (user.isAuthenticated) {
+  //     // let total = 0
+  //     if (user.data) {
+  //       let total = 0
+  //       user.data.map(item => total += item.updatedTotalCalories)
+  //       const progressBarWidth = (total / user.dailyGoal) * 100
+  //       let userData = Object.values(user.data)
+  //       if (userData.length > 0) {
+
+  //         // console.log('TOTAL: ', total)
+  //         return (
+  //           <div className='calories__container animate--fade-in'>
+  //             <ProgressRing progress={progressBarWidth}
+  //                           goal={user.dailyGoal}/>
+  //             <p className='calories__text'>
+  //               I have consumed <span>{!total ? 0 : total}</span> calories today.
+  //             </p>
+  //           </div>
+  //         )
+  //       } else {
+  //         return (
+  //           <div className='calories__container'>
+  //             <p className='calories__text'>
+  //               I have consumed <span>0</span> calories today.
+  //             </p>
+  //           </div>
+  //         )
+  //       }
+  //     } else {
+  //       return <Loader />
+  //     }
+  // } else {
+  //   return null
+  // }
 }
 
 export default Calories

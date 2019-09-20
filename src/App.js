@@ -18,16 +18,17 @@ const App = () => {
       uid: null,
       username: null,
       avatar: null,
-      dailyGoal: 0,
       totalCalories: 0,
-      data: []
+      dailyGoal: 0,
+      history: []
     },
-    toggle_add: false,
-    isLoading: false,
-    toggle_subtract: false,
-    toggle_change_goal: false,
-    date: null,
-    toggle_logout: false
+    modify: {
+      add: false,
+      subtract: false,
+      edit: false
+    },
+    isModalActive: false,
+    isLoading: false
   }
 
   const reducer = (state, action) => {
@@ -47,6 +48,11 @@ const App = () => {
         return {
           ...state,
           isModalActive: action.payload
+        }
+      case "modify":
+        return {
+          ...state,
+          modify: action.payload
         }
 
       default:

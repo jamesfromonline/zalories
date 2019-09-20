@@ -4,6 +4,7 @@ import Header from '../header'
 import Calories from '../calories/Calories'
 import GoalBar from '../goal-bar/GoalBar'
 import Controls from '../controls'
+import Modify from '../modify/Modify'
 import LogOut from '../logout/LogOut'
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
                 <Calories />
                 <GoalBar />
                 <Controls />
+                <Modify />
                 <LogOut />
             </>
         )
