@@ -147,7 +147,7 @@ const Modify = () => {
                   style={ error ? { borderBottom: '2px solid red' } : null } />
           <button onClick={changeGoal}
                   disabled={disabled || error}>
-              GO
+              DONE
           </button>
           <p className={error ? 'modify__error' : 'hidden'}>
             {

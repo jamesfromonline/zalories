@@ -49,18 +49,16 @@ const Calories = () => {
 
   useEffect(() => {
     getExistingUserData()
-  }, [user.isAuthenticated])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (user.isAuthenticated) {
-    const progressPercentage = (user.totalCalories / user.dailyGoal) * 100
     return (
       <div className='calories__container animate--fade-in'>
-              {/* <ProgressRing progress={progressBarWidth}
-                            goal={user.dailyGoal}/> */}
-              <p className='calories__text'>
-                I have consumed <span>{user.totalCalories}</span> calories today.
-              </p>
-            </div>
+        <p className='calories__text'>
+          I have consumed <span>{user.totalCalories}</span> calories today.
+        </p>
+      </div>
     )
   } else {
     return null

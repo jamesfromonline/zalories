@@ -1,5 +1,4 @@
 export const rootReducer = (state, action) => {
-    console.log(action)
     switch (action.type) {
       case "user":
         return {
@@ -21,7 +20,6 @@ export const rootReducer = (state, action) => {
           ...state,
           modify: action.payload
         }
-
       default:
         return state
     }
