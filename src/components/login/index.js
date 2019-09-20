@@ -12,7 +12,6 @@ const Login = () => {
       try {
         if (account) {
           const userInfo = await account
-          // console.log(userInfo)
           dispatch({
             type: "user",
             payload: {
@@ -38,7 +37,6 @@ const Login = () => {
     auth.signInWithPopup(source).then(async result => {
       try {
         const account = await result.additionalUserInfo.profile
-        console.log(await account)
         dispatch({
           type: "user",
           payload: {

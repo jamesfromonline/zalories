@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useContext, useReducer } from "react"
 
 export const StateContext = createContext()
 
@@ -9,8 +9,7 @@ export const initialState = {
     username: null,
     avatar: null,
     totalCalories: 0,
-    dailyGoal: 0,
-    history: []
+    dailyGoal: 0
   },
   modify: {
     add: false,

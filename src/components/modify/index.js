@@ -1,7 +1,6 @@
 import React, { Component, useState, useRef } from "react"
 import { useStateValue } from "../../state"
 import firebase from "firebase"
-import moment from "moment"
 
 const Modify = () => {
   const [disabled, setDisabled] = useState(true),
@@ -10,9 +9,7 @@ const Modify = () => {
     inputRef = useRef(null)
 
   const modifyCalories = amount => {
-    const currentTotalCalories = user.totalCalories,
-      data = Object.values(user.history)
-
+    const currentTotalCalories = user.totalCalories
     let updatedTotalCalories
 
     if (modify.add) {
@@ -21,33 +18,27 @@ const Modify = () => {
       updatedTotalCalories = currentTotalCalories - amount
     }
 
-    const updatedData = {
-      timestamp: moment().unix(),
-      previousTotalCalories: currentTotalCalories,
-      updatedTotalCalories: updatedTotalCalories
-    }
-    data.push(updatedData)
-    const newData = {
-      ...user,
-      history: data,
-      totalCalories: updatedTotalCalories
-    }
     dispatch({
       type: "user",
-      payload: newData
+      payload: {
+        ...user,
+        totalCalories: updatedTotalCalories
+      }
     })
 
     firebase
       .database()
       .ref(`/users/${user.uid}`)
-      .set(newData)
+      .child("totalCalories")
+      .set(updatedTotalCalories)
   }
 
   const modifyCaloricValue = e => {
     e.preventDefault()
     let value = Number(inputRef.current.value),
       total = value + user.totalCalories
-    if (total > value) {
+
+    if (total >= 0) {
       modifyCalories(value)
       dispatch({
         type: "modify",
@@ -66,11 +57,8 @@ const Modify = () => {
     const value = e.target.value,
       total = value + user.totalCalories
     if (value.length > 0) {
-      if (
-        (modify.subtract && value >= total) ||
-        value < 0 ||
-        (modify.add && value < 0)
-      ) {
+      // prettier-ignore
+      if ((modify.subtract && value >= total) || value < 0 || (modify.add && value < 0)) {
         setError(true)
       } else {
         setError(false)
