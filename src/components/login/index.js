@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
-import Header from '../header'
+import Header from "../header"
 import Footer from "../footer"
 import { twitter, google, auth } from "../../utils/firebase"
 
@@ -12,12 +12,13 @@ const Login = () => {
       try {
         if (account) {
           const userInfo = await account
+          // console.log(userInfo)
           dispatch({
             type: "user",
             payload: {
               ...user,
               isAuthenticated: true,
-              uid: userInfo.uid,
+              uid: auth.currentUser.uid,
               username: userInfo.displayName,
               avatar: userInfo.photoURL
             }
@@ -37,19 +38,17 @@ const Login = () => {
     auth.signInWithPopup(source).then(async result => {
       try {
         const account = await result.additionalUserInfo.profile
-        console.log(account)
-        if (source === "twitter") {
-          dispatch({
-            type: "user",
-            payload: {
-              ...user,
-              isAuthenticated: true,
-              uid: source === "twitter" ? account.uid : account.id,
-              username: account.name,
-              avatar: account.profile_image_url_https
-            }
-          })
-        }
+        console.log(await account)
+        dispatch({
+          type: "user",
+          payload: {
+            ...user,
+            isAuthenticated: true,
+            uid: auth.currentUser.uid,
+            username: account.name,
+            avatar: account.profile_image_url_https
+          }
+        })
         dispatch({
           type: "toggleLoader",
           payload: true
