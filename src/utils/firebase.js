@@ -1,12 +1,12 @@
 import firebase from 'firebase'
 
 const config = {
-    apiKey: "AIzaSyAyS_1LNBYjc61TOZpC4dn3FKjvZEcD4Ys",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "calories-2ea8f.firebaseapp.com",
-    databaseURL: "https://calories-2ea8f.firebaseio.com",
+    databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
     projectId: "calories-2ea8f",
     storageBucket: "",
-    messagingSenderId: "171977782628"
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDER_ID
   }
 
 firebase.initializeApp(config)

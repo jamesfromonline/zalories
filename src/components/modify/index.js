@@ -42,30 +42,6 @@ const Modify = () => {
             .set(newData)
   }
 
-    const subtractCalories = amount => {
-      const currentTotalCalories = user.totalCalories
-      const updatedTotalCalories = currentTotalCalories - amount
-      let data = Object.values(user.history)
-      const updatedData = {
-        timestamp: moment().unix(),
-        previousTotalCalories: currentTotalCalories,
-        updatedTotalCalories: updatedTotalCalories
-      }
-      data.push(updatedData)
-      const newData = {
-        ...user,
-        history: data,
-        totalCalories: updatedTotalCalories
-      }
-      dispatch({
-        type: 'user',
-        payload: newData
-      })
-      firebase.database()
-              .ref(`/users/${user.uid}`)
-              .set(newData)
-    }
-
   const modifyCaloricValue = e => {
     e.preventDefault()
     let value = Number(inputRef.current.value),
