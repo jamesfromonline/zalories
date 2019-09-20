@@ -3,6 +3,7 @@ import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
 const ProgressRing = props => {
+  console.log('prog', props.progress)
   return (
     <div className={props.goal > 0 ? 'progress-ring__container' : 'hidden'}>
       <CircularProgressbar

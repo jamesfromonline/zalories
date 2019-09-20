@@ -26,18 +26,16 @@ body {
   margin: 0;
 }
 
-.wrapper {
-  width: 100%;
-}
-
 .app {
+  @include flex(column, center, center);
+  width: 100vw;
+  max-width: 1800px;
 
   &__wrapper {
     @include flex(column, center, center);
     position: relative;
     height: 100%;
-    width: 100vw;
-    max-width: 1800px;
+    width: 100%;
     text-align: center;
     margin: 0;
   }

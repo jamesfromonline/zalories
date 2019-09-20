@@ -1,9 +1,10 @@
 import React, { useEffect } from "react"
 import { useStateValue } from "../../state"
-import Footer from "../footer/Footer"
-import firebase, { twitter, google, facebook, auth } from "../../utils/firebase"
+import Header from '../header'
+import Footer from "../footer"
+import { twitter, google, auth } from "../../utils/firebase"
 
-const Login = props => {
+const Login = () => {
   const [{ user }, dispatch] = useStateValue()
 
   const checkForPreviousLogin = () => {
@@ -21,17 +22,11 @@ const Login = props => {
               avatar: userInfo.photoURL
             }
           })
-
-          dispatch({
-            type: "toggleLoader",
-            payload: false
-          })
-        } else {
-          dispatch({
-            type: "toggleLoader",
-            payload: false
-          })
         }
+        dispatch({
+          type: "toggleLoader",
+          payload: false
+        })
       } catch (e) {
         console.error("Error fetching previous auth: ", e)
       }
@@ -42,24 +37,14 @@ const Login = props => {
     auth.signInWithPopup(source).then(async result => {
       try {
         const account = await result.additionalUserInfo.profile
+        console.log(account)
         if (source === "twitter") {
           dispatch({
             type: "user",
             payload: {
               ...user,
               isAuthenticated: true,
-              uid: account.uid,
-              username: account.name,
-              avatar: account.profile_image_url_https
-            }
-          })
-        } else {
-          dispatch({
-            type: "user",
-            payload: {
-              ...user,
-              isAuthenticated: true,
-              uid: account.id,
+              uid: source === "twitter" ? account.uid : account.id,
               username: account.name,
               avatar: account.profile_image_url_https
             }
@@ -87,6 +72,7 @@ const Login = props => {
   if (!user.isAuthenticated) {
     return (
       <div className="login__container">
+        <Header />
         <div className="login__links">
           <a
             className="login__link"

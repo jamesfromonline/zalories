@@ -1,19 +1,20 @@
 import React from 'react'
 import { useStateValue } from '../../state'
-import ProgressBar from '../shared/progress-bar/ProgressBar'
+import ProgressBar from '../shared/progress-bar'
 
 const GoalBar = props => {
   const [{ user, modify }, dispatch] = useStateValue()
 
-  const toggleModify = operator => dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
+  const toggleModify = operator =>
+    dispatch({ type: 'modify', payload: { ...modify, [operator]: true } })
 
-  let total = user.totalCalories
   if (user.dailyGoal > 0) {
-    const progressBarWidth = (total / user.dailyGoal) * 100
+    const progressBarWidth = (user.totalCalories / user.dailyGoal) * 100
     return (
-      <div className='goal-bar__container animate--fade-in' onClick={() => toggleModify('edit')}>
+      <div className='goal-bar__container animate--fade-in'
+           onClick={() => toggleModify('edit')}>
         <ProgressBar progress={progressBarWidth} />
-        <p>{total} / {user.dailyGoal} calories</p>
+        <p>{user.totalCalories} / {user.dailyGoal} calories</p>
       </div>
     )
   } else {
