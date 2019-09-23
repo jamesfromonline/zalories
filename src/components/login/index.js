@@ -78,13 +78,13 @@ const Login = () => {
           >
             <i className="fab fa-google" />
           </a>
-          <a
+          {/* <a
             className="login__link"
             onClick={() => handleLogIn(twitter)}
             title="Sign in with Twitter"
           >
             <i className="fab fa-twitter" />
-          </a>
+          </a> */}
         </div>
         <Footer />
       </div>

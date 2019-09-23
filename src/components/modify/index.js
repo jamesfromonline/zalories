@@ -54,11 +54,11 @@ const Modify = () => {
   }
 
   const handleInputValidation = e => {
-    const value = e.target.value,
-      total = value + user.totalCalories
+    const value = e.target.value
     if (value.length > 0) {
       // prettier-ignore
-      if ((modify.subtract && value >= total) || value < 0 || (modify.add && value < 0)) {
+      if (
+        (modify.subtract && value > user.totalCalories) || value < 0 || (modify.add && value < 0)) {
         setError(true)
       } else {
         setError(false)
