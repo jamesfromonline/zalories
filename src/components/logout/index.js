@@ -10,16 +10,16 @@ const LogOut = props => {
 
   const handleLogOut = () => {
     auth.signOut()
-    .then(() => {
-      dispatch({
-        type: 'user',
-        payload: {
-          ...user,
-          isAuthenticated: false
-        }
+      .then(() => {
+        dispatch({
+          type: 'user',
+          payload: {
+            ...user,
+            isAuthenticated: false
+          }
+        })
+        toggleModal()
       })
-      toggleModal()
-    })
   }
 
   const showLogout = isModalActive ? 'logout__container' : 'hidden'
@@ -33,7 +33,7 @@ const LogOut = props => {
       <div className='login__links'>
         <button className='logout__button'
           onClick={handleLogOut}
-          title='Sign in with Google'>
+          title='Log Out'>
           Log Out
         </button>
       </div>

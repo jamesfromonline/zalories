@@ -1,29 +1,39 @@
-@import '../../styles/shared/_mixins.scss';
-@import '../../styles/shared/_variables.scss';
-
 .goal-bar {
 
   &__container {
     position: relative;
     width: 100%;
-    // background: lighten($grey--background, 20%);
     cursor: pointer;
 
     p {
       position: relative;
+      z-index: 22;
+      color: $white;
       font-family: $font--main;
-      font-size: 1rem;
-      font-weight: 600;
-      color: white;
-      text-align: center;
-      box-sizing: border-box;
-      z-index: 20;
-
-      @media (max-width: 768px) {
-        text-align: right;
-        font-size: 0.8rem;
-        padding-right: 20px;
-      }
+      font-size: 1.2rem;
     }
+  }
+
+  &__button {
+    position: relative;
+    font-family: $font--main;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 0;
+    height: 100px;
+    background: transparent;
+    outline: 0;
+    color: $peach;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    z-index: 20;
+
+    @media (max-width: 768px) {
+      text-align: right;
+      font-size: 0.8rem;
+      padding-right: 20px;
+    }
+    cursor: pointer;
   }
 }

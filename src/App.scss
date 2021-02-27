@@ -1,3 +1,5 @@
+@import './styles/shared/variables';
+@import './styles/shared/mixins';
 @import './components/calories/calories';
 @import './components/modify/modify';
 @import './components/login/login';
@@ -7,8 +9,6 @@
 @import './components/goal-bar/goal-bar';
 @import './components/shared/progress-ring/progress-ring';
 @import './components/shared/progress-bar/progress-bar';
-@import './styles/shared/mixins';
-@import './styles/shared/variables';
 @import './styles/shared/animations';
 
 @import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
@@ -17,8 +17,8 @@
 #root {
   display: flex;
   justify-content: center;
-  background-color: $grey--background;
-  @include linear-grad($grey--background, lighten($grey--background, 5%), 109deg);
+  background-color: $navy;
+  // @include linear-grad($grey--background, lighten($grey--background, 5%), 109deg);
 }
 
 body {
@@ -34,7 +34,7 @@ body {
     @include flex(column, center, center);
     position: relative;
     height: 100%;
-    width: 100%;
+    width: 100vw;
     text-align: center;
     margin: 0;
   }
@@ -44,7 +44,7 @@ body {
     font-family: $font--main;
     font-weight: 400;
     font-size: 1.5rem;
-    color: white;
+    color: $white;
     width: 100%;
     box-sizing: border-box;
     padding: 30px 20px 5px 20px;
@@ -63,8 +63,8 @@ body {
     &--logout {
       background: url('/logout.svg') no-repeat center;
       background-size: contain;
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
     }
 
     a {
@@ -96,7 +96,7 @@ body {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 2px solid white;
+      border: 2px solid $white;
 
       @media (max-width: 768px) {
         border: none;
@@ -110,11 +110,11 @@ body {
     padding: 0 0 0 40px;
     font-family: $font--main;
     font-size: 1.4rem;
-    color: white;
+    color: $white;
     margin: 0;
 
     @media (max-width: 768px) {
-      font-size: 1rem;
+      font-size: 1.2rem;
       padding: 0;
       text-align: left;
     }
@@ -141,18 +141,27 @@ body {
       @include flex(row, center, center);
       cursor: pointer;
       font-size: 2rem;
-      color: white;
+      color: $white;
       border: 0;
       outline: none;
-      background: transparent;
-
-      &:focus,
-      &:hover {
-        background: lighten($grey--background, 7%);
-      }
+      background-color: lighten($navy, 5%);
+      transition: all .2s ease-in-out;
 
       &:first-child {
         border-right: 1px solid lighten($grey--background, 20%);
+
+        &:focus,
+        &:hover {
+          background: $peach;
+        }
+      }
+
+      &:last-child {
+
+        &:focus,
+        &:hover {
+          background: $blue;
+        }
       }
     }
   }
@@ -162,7 +171,7 @@ h1 {
   font-family: 'Work Sans';
   font-size: 3rem;
   font-weight: 400;
-  color: white;
+  color: $white;
   letter-spacing: -2px;
 }
 

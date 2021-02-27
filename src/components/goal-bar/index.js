@@ -12,16 +12,16 @@ const GoalBar = props => {
     const progressBarWidth = (user.totalCalories / user.dailyGoal) * 100
     return (
       <div className='goal-bar__container animate--fade-in'
-           onClick={() => toggleModify('edit')}>
+        onClick={() => toggleModify('edit')}>
         <ProgressBar progress={progressBarWidth} />
-        <p>{user.totalCalories} / {user.dailyGoal} calories</p>
+        <p><strong>{user.totalCalories}</strong> out of <strong>{user.dailyGoal}</strong> calories</p>
       </div>
     )
   } else {
     return (
-      <div className='goal-bar__container' onClick={() => toggleModify('edit')}>
-        <p>+ Add a daily intake goal</p>
-      </div>
+      <button className='goal-bar__button' onClick={() => toggleModify('edit')}>
+        + Add a daily intake goal
+      </button>
     )
   }
 }

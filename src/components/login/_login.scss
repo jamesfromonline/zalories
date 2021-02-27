@@ -1,5 +1,5 @@
-@import '../../styles/shared/_mixins.scss';
-@import '../../styles/shared/_variables.scss';
+// @import '../../styles/shared/_mixins.scss';
+// @import '../../styles/shared/_variables.scss';
 
 .login {
 
@@ -10,18 +10,54 @@
     height: 100%;
     width: 100vw;
     box-sizing: border-box;
-    padding: 0 20px;
+    // padding: 0 20px;
     z-index: 30;
+    background: $navy;
+    // background-image:
+    // radial-gradient(ellipse at bottom right, $blue 40%, rgba(0,163,203,0) 40%),
+    // radial-gradient(ellipse at top left, $navy 30%, rgba(0,163,203,0) 30%),
+    // linear-gradient(to right, $navy 0%, $navy 33%, $peach 33%, $peach 66%, $blue 66%);
+    // background-size: 50% 100%;
 
     a {
       cursor: pointer;
     }
+
+    p {
+      font-family: $font--main;
+      color: $white;
+      font-size: 1.2rem;
+      margin: 0;
+      margin-top: 12px;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    background: url('/cb-logo.svg') no-repeat center;
+    background-size: contain;
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
   }
 
   &__links {
     @include flex(row, center, center);
-    flex-wrap: wrap;
-    width: 100%;
+    position: relative;
+    margin-top: 30px;
+
+    &:focus,
+    &:hover {
+
+      .login__link-background {
+        padding: 6px;
+        filter: hue-rotate(280deg);
+      }
+
+      .login__link {
+        border-top-color: #c81dd0;
+      }
+    }
 
     @media (max-width: 768px) {
       flex-direction: column;
@@ -37,20 +73,91 @@
     }
   }
 
+  &__link-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+    background: $white;
+    background: linear-gradient(0deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), linear-gradient(-90deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), #FF9E9D;
+    filter: hue-rotate(250deg);
+    transition: all .2s ease-in-out;
+  }
+
+  &__graphic {
+    width: 100%;
+    margin-top: 40px;
+    max-width: 300px;
+    height: 300px;
+    background: url('/burn.svg') no-repeat center;
+    background-size: contain;
+  }
+
   &__link {
-    font-size: 2.5rem;
-    color: white;
+    position: relative;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    font-size: clamp(1.8rem, 2.5rem, 6vw);
     font-family: $font--main;
     text-align: center;
     transform: scale(1);
     transform-origin: center;
     cursor: pointer;
     transition: $transition--standard;
-    margin: 20px;
+    padding: 20px 30px;
+    outline: 0;
+    mix-blend-mode: luminosity;
+    background: $blue;
+    border: 3px solid $white;
+    border-top-color: #0646EB;
+    border-right-color: #9E98FF;
+    border-bottom: 0;
+    border-left: 0;
+    // border-radius: 5px;
+    color: $white;
+    z-index: 2;
+
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   height: 100%;
+    //   transform: scale(1.2);
+    //   background-color: $white;
+    //   z-index: -1;
+    // }
 
     &:focus,
     &:hover {
-      transform: scale(1.05);
+      // border-width: 8px;
+    }
+
+    span {
+      margin-left: 10px;
+      font-size: 2rem;
+      font-size: clamp(1.6rem, 1.8rem, 5vw);
     }
   }
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+	// box-shadow: 0 0 12px -1px grey;
+	// box-sizing: content-box;
+	color: rgba(255,255,255,1);
+	text-overflow: clip;
+	background: linear-gradient(0deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), linear-gradient(-90deg, rgba(255,0,102,0) 20%, rgba(255,0,102,0.0980392) 20%, rgba(255,0,102,0.0980392) 40%, rgba(255,0,102,0.2) 40%, rgba(255,0,102,0.2) 60%, rgba(255,0,102,0.4) 60%, rgba(255,0,102,0.4) 80%, rgba(255,0,102,0.6) 80%), #FF9E9D;
+	background-position: auto auto;
+	background-origin: padding-box;
+	background-clip: border-box;
+  background-size: 100% 100%;
+  overflow-x: hidden;
 }

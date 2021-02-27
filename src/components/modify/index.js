@@ -1,4 +1,4 @@
-import React, { Component, useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { useStateValue } from "../../state"
 import firebase from "firebase"
 
@@ -48,6 +48,7 @@ const Modify = () => {
         }
       })
       inputRef.current.value = ""
+      setDisabled(true)
     } else {
       setError(true)
     }
@@ -65,6 +66,7 @@ const Modify = () => {
       }
       setDisabled(false)
     } else {
+      console.log(value)
       setDisabled(true)
     }
   }
@@ -79,6 +81,7 @@ const Modify = () => {
         edit: false
       }
     })
+    setDisabled(true)
   }
 
   const editGoal = amount => {
@@ -122,14 +125,14 @@ const Modify = () => {
             className="modify__input"
             onChange={handleInputValidation}
             ref={inputRef}
-            style={error ? { borderBottom: "2px solid red" } : null}
+            style={error ? { borderBottom: "3px solid red" } : null}
           />
           <button
             className="modify__button-submit"
             onClick={modifyCaloricValue}
             disabled={disabled || error}
           >
-            DONE
+            Save
           </button>
           <p className={error ? "modify__error" : "hidden"}>
             {modify.add
@@ -155,14 +158,14 @@ const Modify = () => {
             className="modify__input"
             onChange={handleInputValidation}
             ref={inputRef}
-            style={error ? { borderBottom: "2px solid red" } : null}
+            style={error ? { borderBottom: "3px solid #FD8A8B" } : null}
           />
           <button
             className="modify__button-submit"
             onClick={changeGoal}
             disabled={disabled || error}
           >
-            DONE
+            Save
           </button>
           <p className={error ? "modify__error" : "hidden"}>
             {modify.add

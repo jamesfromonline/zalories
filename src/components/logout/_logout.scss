@@ -11,30 +11,30 @@
     width: 100vw;
     box-sizing: border-box;
     padding: 0 20px;
-    @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
+    background-color: $navy;
     z-index: 3000;
   }
 
   &__button {
-    color: white;
+    color:$blue;
     padding: 20px 30px;
-    width: 50%;
     box-sizing: border-box;
     background: none;
-    border: 2px solid lighten(#0b8aff, 10%);
+    border: 3px solid $blue;
     outline: none;
     cursor: pointer;
-    font-size: 1.3rem;
-    text-transform: lowercase;
+    font-size: 2rem;
+    font-size: clamp(1.6rem, 1.8rem, 5vw);
     transition: all 0.4s ease;
 
-    @media (max-width: 768px) {
-      width: 95%;
-    }
+    // @media (max-width: 768px) {
+    //   width: 95%;
+    // }
 
     &:focus,
     &:hover {
-      border-color: lighten(#0b8aff, 15%)
+      border-color: lighten($blue, 15%);
+      color: lighten($blue, 15%);
     }
 
   }
@@ -47,9 +47,10 @@
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
+    padding-top: 30px;
 
     button {
-      color: white;
+      color: $white;
       cursor: pointer;
       background: none;
       outline: 0;

@@ -1,6 +1,3 @@
-@import '../../styles/shared/_mixins.scss';
-@import '../../styles/shared/_variables.scss';
-
 .modify {
 
   &--open {
@@ -19,8 +16,8 @@
     position: absolute;
     width: 100vw;
     height: 100%;
-    @include linear-grad(#0b8aff, lighten(#0b8aff, 10%), 109deg);
-    transition: all 0.5s ease;
+    background-color: $navy;
+    transition: all 0.2s ease-in-out;
     z-index: 9999;
 
     form {
@@ -31,13 +28,13 @@
     input {
       background: transparent;
       border: none;
-      border-bottom: 2px solid white;
+      border-bottom: 2px solid $white;
       margin: 20px 0;
       width: 50%;
       box-sizing: border-box;
       padding: 20px;
       font-family: $font--main;
-      color: white;
+      color: $white;
       font-size: 2rem;
       outline: 0;
       transition: $transition--standard;
@@ -47,7 +44,7 @@
       }
 
       &::placeholder {
-        color: white;
+        color: $white;
       }
     }
 
@@ -60,7 +57,7 @@
     p {
       font-family: $font--main;
       font-size: 1rem;
-      color: white;
+      color: $white;
       padding: 0;
       padding-top: 20px;
       margin: 0;
@@ -70,10 +67,11 @@
   &__button-submit {
       width: 50%;
       background: none;
-      color: white;
+      color: $blue;
       font-family: $font--main;
-      font-size: 1rem;
-      border: 2px solid lighten($blue, 13%);
+      font-size: 2rem;
+      font-size: clamp(1.6rem, 1.8rem, 5vw);
+      border: 3px solid $blue;
       border-radius: 5px;
       box-sizing: border-box;
       padding: 20px 0;
@@ -82,13 +80,15 @@
 
       &:focus,
       &:hover {
-        border-color: lighten($blue, 17%);
+        border-color: lighten($blue, 5%);
+        color: lighten($blue, 5%);
       }
 
       &:disabled {
-        border: 2px solid lighten($blue, 8%);
+        border: 2px solid lighten($peach, 8%);
         background: none;
-        color: lighten($blue, 15%);
+        color: lighten($peach, 15%);
+        opacity: .5;
         cursor: not-allowed;
       }
 

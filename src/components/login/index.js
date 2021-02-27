@@ -68,23 +68,20 @@ const Login = () => {
 
   if (!user.isAuthenticated) {
     return (
-      <div className="login__container">
+      <div className="login__container background">
         <Header />
+        <div className='login__graphic' />
+        <p>A <strong>super simple</strong> calorie tracker.</p>
         <div className="login__links">
-          <a
+          <button
             className="login__link"
             onClick={() => handleLogIn(google)}
             title="Sign in with Google"
           >
             <i className="fab fa-google" />
-          </a>
-          {/* <a
-            className="login__link"
-            onClick={() => handleLogIn(twitter)}
-            title="Sign in with Twitter"
-          >
-            <i className="fab fa-twitter" />
-          </a> */}
+            <span>Login/Sign Up</span>
+          </button>
+          <div className='login__link-background' />
         </div>
         <Footer />
       </div>
