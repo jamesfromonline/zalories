@@ -1,13 +1,13 @@
 import firebase from 'firebase'
 
 const config = {
-  apiKey: "AIzaSyAyS_1LNBYjc61TOZpC4dn3FKjvZEcD4Ys",
-  authDomain: "calories-2ea8f.firebaseapp.com",
-  databaseURL: "https://calories-2ea8f.firebaseio.com",
-  projectId: "calories-2ea8f",
-  storageBucket: "calories-2ea8f.appspot.com",
-  messagingSenderId: "171977782628",
-  appId: "1:171977782628:web:2e9ae5afb2b6128e9eb671"
+  apiKey: "AIzaSyDWfwePfjy0nm3xtyVzB_U12Vm53HPsGXQ",
+  authDomain: "journaler-36ac9.firebaseapp.com",
+  databaseURL: "https://journaler-36ac9.firebaseio.com",
+  projectId: "journaler-36ac9",
+  storageBucket: "journaler-36ac9.appspot.com",
+  messagingSenderId: "229640134833",
+  appId: "1:229640134833:web:391e1fff0ed14a0b870290"
 }
 
 firebase.initializeApp(config)
