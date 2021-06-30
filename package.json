@@ -5,7 +5,7 @@
   "dependencies": {
     "firebase": "^6.6.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.13.1",
     "react": "^16.6.0",
     "react-circular-progressbar": "^2.0.2",
     "react-div-100vh": "^0.3.2",
