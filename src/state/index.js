@@ -5,9 +5,9 @@ export const StateContext = createContext()
 export const initialState = {
   user: {
     isAuthenticated: false,
-    uid: null,
-    username: null,
-    avatar: null,
+    uid: '',
+    username: '',
+    avatar: '',
     totalCalories: 0,
     dailyGoal: 0
   },
